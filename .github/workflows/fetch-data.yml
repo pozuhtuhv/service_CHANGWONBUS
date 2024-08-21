@@ -21,14 +21,14 @@ jobs:
       run: npm install
 
     - name: Fetch data from API
-      run: node fetch-data.js
+      run: node load_data.js
 
     - name: Commit and push changes
       run: |
         git config --global user.name "Hyeonseok-Cho"
         git config --global user.email "pozuhtuhv@gmail.com"
         git add data.json
-        git commit -m "JSon"
+        git commit -m "(upload) JSon"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
