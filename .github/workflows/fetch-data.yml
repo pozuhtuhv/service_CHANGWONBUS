@@ -1,37 +1,38 @@
-name: Data Save and Commit
+name: Update Bus Data
 
 on:
   schedule:
-    - cron: '0 9 * * *' # 매일 오전 9시 (UTC 기준) 실행
+    - cron: '0 9 * * *'  # 6시간마다 실행
 
 jobs:
-  fetch-and-commit:
+  update:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out the repository
-      uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        node-version: '16' # Node.js 버전 설정
+        python-version: '3.8'
 
     - name: Install dependencies
-      run: npm install
-      working-directory: ./npm_test
-        
-    - name: Fetch data from API
-      run: node load_data.js
-
-    - name: Check for changes
       run: |
-        if [[ $(git status --porcelain) ]]; then
-          git config --global user.name "Hyeonseok-Cho"
-          git config --global user.email "pozuhtuhv@gmail.com"
-          git add data/
-          git commit -m "(upload) JSON data"
-          git push
-        else
-          echo "No changes to commit"
-        fi
+        python -m pip install --upgrade pip
+        pip install requests xmltodict python-dotenv
+
+    - name: Run update script
+      env:
+        SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
+      run: |
+        python busdatasave.py
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "pozuhtuhv@gmail.com"
+        git config --local user.name "Hyeonseok-Cho"
+        git add data/
+        git commit -m "(updata) bus and station data"
+        git push
+      continue-on-error: true  # 데이터가 변경되지 않으면 커밋이 실패할 수 있으므로 에러 무시
