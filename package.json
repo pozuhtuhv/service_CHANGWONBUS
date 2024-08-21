@@ -1,9 +1,0 @@
-{
-  "name": "your-project",
-  "version": "1.0.0",
-  "main": "load_data.js",
-  "dependencies": {
-    "axios": "^0.21.1",
-    "xml2js": "^0.4.23"
-  }
-}
