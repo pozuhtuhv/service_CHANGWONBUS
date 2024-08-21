@@ -1,8 +1,8 @@
-name: Data Save AND Commit
+name: Data Save and Commit
 
 on:
   schedule:
-    - cron: '0 9 * * *'
+    - cron: '0 0 * * *' # 매일 오전 12시 (UTC 기준) 실행
 
 jobs:
   fetch-and-commit:
@@ -23,12 +23,14 @@ jobs:
     - name: Fetch data from API
       run: node load_data.js
 
-    - name: Commit and push changes
+    - name: Check for changes
       run: |
-        git config --global user.name "Hyeonseok-Cho"
-        git config --global user.email "pozuhtuhv@gmail.com"
-        git add data.json
-        git commit -m "(upload) JSon"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if [[ `git status --porcelain` ]]; then
+          git config --global user.name "Hyeonseok-Cho"
+          git config --global user.email "pozuhtuhv@gmail.com"
+          git add data/
+          git commit -m "(upload) JSON data"
+          git push
+        else
+          echo "No changes to commit"
+        fi
