@@ -18,9 +18,8 @@ jobs:
         node-version: '16' # Node.js 버전 설정
 
     - name: Install dependencies
-      run: |
-        npm install axios xml2js
-        working-directory: ./npm_test
+      run: npm install
+      working-directory: ./npm_test
         
     - name: Fetch data from API
       run: node load_data.js
