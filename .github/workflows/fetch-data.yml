@@ -38,5 +38,5 @@ jobs:
         git config --local user.email "pozuhtuhv@gmail.com"
         git config --local user.name "Hyeonseok-Cho"
         git add data/
-        git commit -m "(updata) bus and station data"
+        git commit -m "(update) bus and station data"
         git push
