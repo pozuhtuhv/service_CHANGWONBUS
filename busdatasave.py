@@ -42,28 +42,9 @@ def fetch_and_save_data(url, filename):
 
 def data_save():
     for filename, url in API_URLS.items():
-        print(f'{filename} older than 6 hours, reloading...')
         fetch_and_save_data(url, os.path.join(DATA_DIR, f'{filename}.json'))
         print(f'{filename} reload Done')
 
-def newdata_load():
-    # 6시간 기준 최신화를 위한 리로드
-    six_hours_ago = datetime.datetime.now() - datetime.timedelta(hours=6)
-
-    # [1-1]busdata 파일을 대표로 마지막 시간을 확인
-    filepath = os.path.join(DATA_DIR, '[1-1]busdata.json')
-    if os.path.exists(filepath):
-        modified_time = datetime.datetime.fromtimestamp(os.path.getmtime(filepath))
-        if modified_time < six_hours_ago:  
-            data_save()
-        else:
-            print('No reload required')
-    else:
-        print('파일이 존재하지 않아 데이터를 새로 로드합니다.')
-        data_save()
-
-# 스크립트 실행 시 항상 실행
-newdata_load()
-
+data_save()
 
 # commit content test
