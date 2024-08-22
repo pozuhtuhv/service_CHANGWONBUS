@@ -20,7 +20,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8'
+        python-version: '3.x'
 
     - name: Install dependencies
       run: |
@@ -40,4 +40,3 @@ jobs:
         git add data/
         git commit -m "(updata) bus and station data"
         git push
-      continue-on-error: true  # 데이터가 변경되지 않으면 커밋이 실패할 수 있으므로 에러 무시
