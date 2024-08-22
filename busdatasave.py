@@ -64,3 +64,6 @@ def newdata_load():
 
 # 스크립트 실행 시 항상 실행
 newdata_load()
+
+
+# commit content test
