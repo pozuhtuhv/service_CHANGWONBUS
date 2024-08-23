@@ -38,19 +38,19 @@ function displayResults(results) {
 // JSON 데이터 필드를 좀 더 이해하기 쉬운 형태로 변환하는 함수
 function transformBusInfo(busInfo) {
     return `
-순번: ${busInfo["@index"]}
-버스 ID: ${busInfo.ROUTE_ID}
-버스 이름: ${busInfo.ROUTE_NM}
-시점 정류장 ID: ${busInfo.ORGT_STATION_ID}
-종점 정류장 ID: ${busInfo.DST_STATION_ID}
-노선 타입: ${busInfo.ROUTE_TP}
-정류장 수: ${busInfo.STATION_CNT}
-노선 길이 (m): ${busInfo.ROUTE_LEN}
-노선 색깔: ${busInfo.ROUTE_COLOR}
-첫차 시각: ${busInfo.FIRST_TM}
-막차 시각: ${busInfo.LAST_TM}
-행정구역: ${busInfo.GOV_NM}
-최종 업데이트 시간: ${busInfo.UPD}
+순번: ${busInfo["@index"]}\n
+버스 ID: ${busInfo.ROUTE_ID}\n
+버스 이름: ${busInfo.ROUTE_NM}\n
+시점 정류장 ID: ${busInfo.ORGT_STATION_ID}\n
+종점 정류장 ID: ${busInfo.DST_STATION_ID}\n
+노선 타입: ${busInfo.ROUTE_TP}\n
+정류장 수: ${busInfo.STATION_CNT}\n
+노선 길이 (m): ${busInfo.ROUTE_LEN}\n
+노선 색깔: ${busInfo.ROUTE_COLOR}\n
+첫차 시각: ${busInfo.FIRST_TM || "정보 없음"}\n
+막차 시각: ${busInfo.LAST_TM || "정보 없음"}\n
+행정구역: ${busInfo.GOV_NM}\n
+최종 업데이트 시간: ${busInfo.UPD}\n
     `;
 }
 
