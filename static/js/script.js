@@ -50,7 +50,7 @@ function transformBusInfo(busInfo) {
 첫차 시각: ${busInfo.FIRST_TM || "정보 없음"}<br>
 막차 시각: ${busInfo.LAST_TM || "정보 없음"}<br>
 행정구역: ${busInfo.GOV_NM}<br>
-최종 업데이트 시간: ${busInfo.UPD}<br>
+최종 업데이트 시간: ${busInfo.UPD}
     `;
 }
 
@@ -59,7 +59,7 @@ function selectBus(event) {
     const selectedBusInfo = JSON.parse(event.target.value);
     const transformedBusInfo = transformBusInfo(selectedBusInfo);
     const selectionDiv = document.getElementById('busSelection');
-    selectionDiv.textContent = transformedBusInfo.trim(); // 불필요한 공백 제거
+    selectionDiv.innerHTML = transformedBusInfo.trim(); // 줄바꿈이 포함된 HTML 삽입
     selectionDiv.style.display = 'block';
 }
 
@@ -72,9 +72,4 @@ async function handleSubmit(event) {
     displayResults(matchingBuses);
 }
 
-// 이벤트 리스너 추가
-document.getElementById('busForm').addEventListener('submit', handleSubmit);
-document.getElementById('busDropdown').addEventListener('change', selectBus);
-
 // RIGHT ZONE
-
