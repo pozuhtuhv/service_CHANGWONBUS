@@ -1,5 +1,7 @@
 # 창원버스 INFORMATION 수집
 
+**URL** : https://pozuhtuhv.github.io/service_CHANGWONBUS
+
 ## 개요
 
 GitHub Actions 으로 자동 창원버스 API DATA 수집.
@@ -12,13 +14,17 @@ GitHub Repo Setting -> 공공 API 'SERVICE_KEY' : Secrets 키 설정
 GitHub Actions 을 통해 busdatasave.py 를 실행
 레포지토리 '창원버스 API' 데이터(json) 푸시
 
-https://pozuhtuhv.github.io/service_CHANGWONBUS
-
 ### 2. 계획
 
 좌측 : <br>
 검색된 버스 데이터를 가져오고 , 정류장 정보 구분
 현재 운행중인 정보([4-1]busposition.json) 에서 하행종점, 상행종점 비교하여 반환
+
+### 3. DATA
+
+`[1-1]busdata.json, [1-3]stationdata.json` : GitHub Repo Data <br>
+`[3-1]busstop.json, [4-1]busposition.json` : API Data
+
 
 ## PLAN
 
