@@ -1,3 +1,4 @@
+// LEFT ZONE
 // GitHub에 있는 JSON 데이터를 가져오는 함수
 async function fetchBusData() {
     const response = await fetch('https://pozuhtuhv.github.io/service_CHANGWONBUS/data/%5B1-1%5Dbusdata.json');
@@ -50,3 +51,6 @@ async function handleSubmit(event) {
     const matchingBuses = searchBus(busNum, busData);
     displayResults(matchingBuses);
 }
+
+// RIGHT ZONE
+
