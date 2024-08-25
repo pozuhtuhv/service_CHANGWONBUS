@@ -1,13 +1,53 @@
+# name: Update Bus Data
+
+# on:
+#   schedule:
+#     - cron: '0 0 * * *'  # 한국시간 오전 9시 실행
+
+# # on:
+# #   push:
+# #     branches:
+# #       - main
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout repository
+#       uses: actions/checkout@v2
+
+#     - name: Set up Python
+#       uses: actions/setup-python@v2
+#       with:
+#         python-version: '3.x'
+
+#     - name: Install dependencies
+#       run: |
+#         python -m pip install --upgrade pip
+#         pip install requests xmltodict
+
+#     - name: Run update script
+#       env:
+#         SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
+#       run: |
+#         python busdatasave.py
+
+#     - name: Commit and push changes
+#       run: |
+#         git config --local user.email "pozuhtuhv@gmail.com"
+#         git config --local user.name "Hyeonseok-Cho"
+#         git add .
+#         git commit -m "(update) bus and station data"
+#         git push
+
+
 name: Update Bus Data
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # 한국시간 오전 9시 실행
-
-# on:
-#   push:
-#     branches:
-#       - main
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -33,10 +73,15 @@ jobs:
       run: |
         python busdatasave.py
 
+    - name: Verify file changes
+      run: |
+        git status
+        ls -al data/
+
     - name: Commit and push changes
       run: |
         git config --local user.email "pozuhtuhv@gmail.com"
         git config --local user.name "Hyeonseok-Cho"
-        git add .
-        git commit -m "(update) bus and station data"
+        git add data/
+        git commit -m "(update) bus and station data" || echo "No changes to commit"
         git push
