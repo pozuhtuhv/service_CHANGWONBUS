@@ -76,8 +76,11 @@ API_URLS = {
 # XML 데이터를 가져와 JSON으로 변환 후 파일에 저장
 def fetch_and_save_data(url, filename):
     try:
+        print(f"Fetching data from {url}")
         response = requests.get(url)
-        response.raise_for_status()
+        print(f"HTTP Status Code: {response.status_code}")  # 상태 코드 출력
+        response.raise_for_status()  # HTTP 에러 발생 시 예외 처리
+
         xml_data = response.content.decode('utf-8')  # 한글 디코딩
         json_data = json.dumps(xmltodict.parse(xml_data), indent=4, ensure_ascii=False)
         
