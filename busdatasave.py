@@ -49,6 +49,7 @@
 
 # # commit content test2
 
+import hashlib
 import json
 import os
 
@@ -73,24 +74,38 @@ API_URLS = {
     '[1-3]stationdata': f'http://openapi.changwon.go.kr/rest/bis/Station/?serviceKey={SERVICE_KEY}'
 }
 
+# 해시 계산 함수
+def calculate_file_hash(file_path):
+    hasher = hashlib.md5()
+    with open(file_path, 'rb') as f:
+        buf = f.read()
+        hasher.update(buf)
+    return hasher.hexdigest()
+
 # XML 데이터를 가져와 JSON으로 변환 후 파일에 저장
 def fetch_and_save_data(url, filename):
     try:
-        print(f"Fetching data from {url}")
         response = requests.get(url)
-        print(f"HTTP Status Code: {response.status_code}")  # 상태 코드 출력
-        response.raise_for_status()  # HTTP 에러 발생 시 예외 처리
-
+        response.raise_for_status()
         xml_data = response.content.decode('utf-8')  # 한글 디코딩
         json_data = json.dumps(xmltodict.parse(xml_data), indent=4, ensure_ascii=False)
         
-        with open(filename, 'w', encoding='utf-8') as file:
-            file.write(json_data)
-        print(f'{filename} 저장 완료')
-
-        # 파일이 정상적으로 저장되었는지 확인
+        temp_filename = f"{filename}.temp"
+        with open(temp_filename, 'w', encoding='utf-8') as temp_file:
+            temp_file.write(json_data)
+        
+        # 기존 파일이 있는 경우 해시를 비교하여 내용이 동일한지 확인
         if os.path.exists(filename):
-            print(f'{filename} 파일이 정상적으로 생성되었습니다.')
+            original_hash = calculate_file_hash(filename)
+            new_hash = calculate_file_hash(temp_filename)
+            if original_hash == new_hash:
+                print(f'{filename} 파일의 내용이 동일하여 덮어쓰지 않습니다.')
+                os.remove(temp_filename)  # 임시 파일 삭제
+                return
+        
+        # 내용이 다르면 새 파일로 덮어쓰기
+        os.rename(temp_filename, filename)
+        print(f'{filename} 저장 완료')
 
     except requests.exceptions.RequestException as e:
         print(f'{url}에서 데이터를 가져올 수 없습니다.: {e}')
