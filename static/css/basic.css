@@ -75,6 +75,7 @@ select {
     width: 100%;
     padding: 10px;
     margin-top: 15px;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
@@ -83,10 +84,10 @@ select {
     display: none;
 }
 
-#busSelection {
+#busSelection1, #busSelection2 {
     margin-top: 15px;
     padding: 10px;
-    background-color: #fafafa;
+    background-color: #ebebeb;
     border-radius: 4px;
     border: 1px solid #ccc;
     display: none;
