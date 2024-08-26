@@ -4,34 +4,55 @@
     <meta charset="UTF-8">
     <title>CHANGWONBUS API</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="static/css/basic.css">
-<script type="application/javascript" src="static/js/script.js"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G7512FD03X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <link rel="stylesheet" href="static/css/basic.css">
+    <script type="application/javascript" src="static/js/script.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7512FD03X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'G-G7512FD03X');
-</script>
+        gtag('config', 'G-G7512FD03X');
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Bus Information Lookup</h1>
-        <form onsubmit="handleSubmit(event)">
-            <label for="busnum">BUS_NUM : </label>
-            <input type="text" id="busnum" name="busnum" required><br><br>
-            <button type="submit">Search Bus</button>
-        </form>
+    <div class="main-container">
+        <!-- 첫 번째 버스 조회 섹션 -->
+        <div class="container">
+            <h1>Bus Information Lookup 1</h1>
+            <form onsubmit="handleSubmitLeft(event)">
+                <label for="busnum1">BUS_NUM : </label>
+                <input type="text" id="busnum1" name="busnum1" required><br><br>
+                <button type="submit">Search Bus</button>
+            </form>
 
-        <!-- 검색 결과를 드롭다운으로 표시 -->
-        <select id="busDropdown" onchange="selectBus(event)">
-            <!-- 검색된 결과를 옵션으로 추가 -->
-        </select>
+            <!-- 검색 결과를 드롭다운으로 표시 -->
+            <select id="busDropdown1" onchange="selectBusLeft(event)">
+                <!-- 검색된 결과를 옵션으로 추가 -->
+            </select>
 
-        <!-- 선택한 버스 정보를 표시할 영역 -->
-        <div id="busSelection"></div>
+            <!-- 선택한 버스 정보를 표시할 영역 -->
+            <div id="busSelection1"></div>
+        </div>
+
+        <!-- 두 번째 버스 조회 섹션 -->
+        <div class="container">
+            <h1>Bus Information Lookup 2</h1>
+            <form onsubmit="handleSubmitRight(event)">
+                <label for="busnum2">BUS_NUM : </label>
+                <input type="text" id="busnum2" name="busnum2" required><br><br>
+                <button type="submit">Search Bus</button>
+            </form>
+
+            <!-- 검색 결과를 드롭다운으로 표시 -->
+            <select id="busDropdown2" onchange="selectBusRight(event)">
+                <!-- 검색된 결과를 옵션으로 추가 -->
+            </select>
+
+            <!-- 선택한 버스 정보를 표시할 영역 -->
+            <div id="busSelection2"></div>
+        </div>
     </div>
 </body>
 </html>

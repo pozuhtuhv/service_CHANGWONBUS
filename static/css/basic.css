@@ -10,13 +10,23 @@ body {
     height: 100vh;
 }
 
+/* 전체 레이아웃을 감싸는 컨테이너 */
+.main-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* 개별 컨테이너 설정 */
 .container {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
     max-width: 400px;
-    width: 90%;
+    width: 45%; /* 각각의 컨테이너가 45% 너비를 가짐 */
+    box-sizing: border-box;
 }
 
 h1 {
@@ -92,16 +102,13 @@ pre {
 
 /* 반응형 디자인 */
 @media (max-width: 600px) {
-    h1 {
-        font-size: 18px;
-    }
-
-    input[type="text"], button, select {
-        font-size: 14px;
-        padding: 10px;
+    .main-container {
+        flex-direction: column;
+        align-items: center;
     }
 
     .container {
-        padding: 15px;
+        width: 90%;
+        margin-bottom: 20px;
     }
 }
