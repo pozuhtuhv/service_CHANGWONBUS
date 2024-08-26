@@ -951,13 +951,13 @@
                         "DST_STATION_ID": "379002398",
                         "ROUTE_NUM": "277",
                         "ROUTE_TP": "80",
-                        "STATION_CNT": "58",
-                        "ROUTE_LEN": "24138.9",
+                        "STATION_CNT": "60",
+                        "ROUTE_LEN": "25296.9",
                         "ROUTE_COLOR": "3",
                         "FIRST_TM": "06:00",
                         "LAST_TM": "21:00",
                         "GOV_NM": "창원시",
-                        "UPD": "2024-05-18 15:25:21"
+                        "UPD": "2024-08-23 15:23:22"
                     },
                     {
                         "@index": "60",
