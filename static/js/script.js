@@ -27,8 +27,8 @@ async function transformBusInfo(busInfo) {
     return `
 버스 ID: ${busInfo.ROUTE_ID}<br>
 버스 이름: ${busInfo.ROUTE_NM}<br>
-시점 정류장: ${originStationName} (ID: ${busInfo.ORGT_STATION_ID})<br>
-종점 정류장: ${destinationStationName} (ID: ${busInfo.DST_STATION_ID})<br>
+시점 정류장: ${originStationName}<br>(ID: ${busInfo.ORGT_STATION_ID})<br>
+종점 정류장: ${destinationStationName}<br>(ID: ${busInfo.DST_STATION_ID})<br>
 정류장 수: ${busInfo.STATION_CNT}<br>
 노선 길이 (m): ${busInfo.ROUTE_LEN}<br>
 첫차 시각: ${busInfo.FIRST_TM}<br>
