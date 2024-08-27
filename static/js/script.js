@@ -1,3 +1,5 @@
+const SERVICE_KEY = process.env.SERVICE_KEY;
+
 // 창원시 운용중인 전체 [버스] 데이터를 가져오는 함수
 async function fetchBusData() {
     const response = await fetch('https://pozuhtuhv.github.io/service_CHANGWONBUS/data/%5B1-1%5Dbusdata.json');
