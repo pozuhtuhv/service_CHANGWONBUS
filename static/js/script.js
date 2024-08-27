@@ -74,7 +74,6 @@ async function selectBusLeft(event) {
     const selectionDiv = document.getElementById('busSelection1');
     selectionDiv.innerHTML = transformedBusInfo.trim(); // 줄바꿈이 포함된 HTML 삽입
     selectionDiv.style.display = 'block';
-    console.log(event.target.value);
 }
 
 // 폼 제출 시 검색 기능을 수행하는 함수 (왼쪽 섹션)

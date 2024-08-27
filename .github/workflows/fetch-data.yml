@@ -4,11 +4,6 @@ on:
   schedule:
     - cron: '0 0 * * *'  # 한국시간 오전 9시 실행
 
-# on:
-#   push:
-#     branches:
-#       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,6 +21,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install requests xmltodict
+
+    - name: Inject secrets into script.js
+      run: |
+        echo "const SERVICE_KEY = '${{ secrets.SERVICE_KEY }}';" > serviceKey.js
+        cat serviceKey.js script.js > temp.js && mv temp.js script.js
 
     - name: Run update script
       env:
