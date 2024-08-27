@@ -70,10 +70,13 @@ function displayResultsLeft(results) {
 // 드롭다운에서 선택된 버스 정보를 표시하는 함수 (왼쪽 섹션)
 async function selectBusLeft(event) {
     const selectedBusInfo = JSON.parse(event.target.value);
+    const response = await fetch('http://openapi.changwon.go.kr/rest/bis/BusArrives/?serviceKey={SERVICE_KEY}&station={STATION_ID}');
+    const data = await response.json();
     const transformedBusInfo = await transformBusInfo(selectedBusInfo);
     const selectionDiv = document.getElementById('busSelection1');
     selectionDiv.innerHTML = transformedBusInfo.trim(); // 줄바꿈이 포함된 HTML 삽입
     selectionDiv.style.display = 'block';
+    console.log(data)
 }
 
 // 폼 제출 시 검색 기능을 수행하는 함수 (왼쪽 섹션)
