@@ -1,11 +1,11 @@
-// GitHub에 있는 JSON 데이터를 가져오는 함수
+// 창원시 운용중인 전체 [버스] 데이터를 가져오는 함수
 async function fetchBusData() {
     const response = await fetch('https://pozuhtuhv.github.io/service_CHANGWONBUS/data/%5B1-1%5Dbusdata.json');
     const data = await response.json();
     return data.ServiceResult.MsgBody.BusList.row;
 }
 
-// 정류장 데이터를 가져오는 함수
+// 창원시 운용중인 전체 [정류장] 데이터를 가져오는 함수
 async function fetchStationData() {
     const response = await fetch('https://pozuhtuhv.github.io/service_CHANGWONBUS/data/%5B1-3%5Dstationdata.json');
     const data = await response.json();
@@ -74,6 +74,7 @@ async function selectBusLeft(event) {
     const selectionDiv = document.getElementById('busSelection1');
     selectionDiv.innerHTML = transformedBusInfo.trim(); // 줄바꿈이 포함된 HTML 삽입
     selectionDiv.style.display = 'block';
+    console.log(event.target.value);
 }
 
 // 폼 제출 시 검색 기능을 수행하는 함수 (왼쪽 섹션)
