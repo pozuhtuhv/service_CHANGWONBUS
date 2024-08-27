@@ -33,6 +33,12 @@ jobs:
       run: |
         python busdatasave.py
 
+    - name: Run script.js
+      env:
+        SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
+      run: |
+        node script.js
+
     - name: Commit and push changes
       run: |
         git config --local user.email "pozuhtuhv@gmail.com"
