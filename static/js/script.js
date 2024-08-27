@@ -5,22 +5,34 @@ async function fetchBusData() {
     return data.ServiceResult.MsgBody.BusList.row;
 }
 
-// 버스 번호로 데이터를 필터링하는 함수
-function searchBus(busNum, busData) {
-    return busData.filter(row => row.ROUTE_NM.includes(busNum));
+// 정류장 데이터를 가져오는 함수
+async function fetchStationData() {
+    const response = await fetch('https://pozuhtuhv.github.io/service_CHANGWONBUS/data/%5B1-3%5Dstationdata.json');
+    const data = await response.json();
+    return data.ServiceResult.MsgBody.StationList.row;
+}
+
+// 정류장 ID를 정류장 이름으로 변환하는 함수
+function getStationName(stationId, stationData) {
+    const station = stationData.find(station => station.STATION_ID === stationId);
+    return station ? station.STATION_NM : '알 수 없음';
 }
 
 // JSON 데이터 필드를 좀 더 이해하기 쉬운 형태로 변환하는 함수
-function transformBusInfo(busInfo) {
+async function transformBusInfo(busInfo) {
+    const stationData = await fetchStationData();
+    const originStationName = getStationName(busInfo.ORGT_STATION_ID, stationData);
+    const destinationStationName = getStationName(busInfo.DST_STATION_ID, stationData);
+
     return `
 버스 ID: ${busInfo.ROUTE_ID}<br>
 버스 이름: ${busInfo.ROUTE_NM}<br>
-시점 정류장 ID: ${busInfo.ORGT_STATION_ID}<br>
-종점 정류장 ID: ${busInfo.DST_STATION_ID}<br>
+시점 정류장: ${originStationName} (ID: ${busInfo.ORGT_STATION_ID})<br>
+종점 정류장: ${destinationStationName} (ID: ${busInfo.DST_STATION_ID})<br>
 정류장 수: ${busInfo.STATION_CNT}<br>
 노선 길이 (m): ${busInfo.ROUTE_LEN}<br>
-첫차 시각: ${busInfo.FIRST_TM || "정보 없음"}<br>
-막차 시각: ${busInfo.LAST_TM || "정보 없음"}<br>
+첫차 시각: ${busInfo.FIRST_TM}<br>
+막차 시각: ${busInfo.LAST_TM}<br>
 최종 업데이트 시간: ${busInfo.UPD}
     `;
 }
@@ -51,15 +63,13 @@ function displayResultsLeft(results) {
 }
 
 // 드롭다운에서 선택된 버스 정보를 표시하는 함수 (왼쪽 섹션)
-function selectBusLeft(event) {
+async function selectBusLeft(event) {
     const selectedBusInfo = JSON.parse(event.target.value);
-    const transformedBusInfo = transformBusInfo(selectedBusInfo);
+    const transformedBusInfo = await transformBusInfo(selectedBusInfo);
     const selectionDiv = document.getElementById('busSelection1');
     selectionDiv.innerHTML = transformedBusInfo.trim(); // 줄바꿈이 포함된 HTML 삽입
     selectionDiv.style.display = 'block';
 }
-
-
 
 // 폼 제출 시 검색 기능을 수행하는 함수 (왼쪽 섹션)
 async function handleSubmitLeft(event) {
@@ -96,9 +106,9 @@ function displayResultsRight(results) {
 }
 
 // 드롭다운에서 선택된 버스 정보를 표시하는 함수 (오른쪽 섹션)
-function selectBusRight(event) {
+async function selectBusRight(event) {
     const selectedBusInfo = JSON.parse(event.target.value);
-    const transformedBusInfo = transformBusInfo(selectedBusInfo);
+    const transformedBusInfo = await transformBusInfo(selectedBusInfo);
     const selectionDiv = document.getElementById('busSelection2');
     selectionDiv.innerHTML = transformedBusInfo.trim(); // 줄바꿈이 포함된 HTML 삽입
     selectionDiv.style.display = 'block';
