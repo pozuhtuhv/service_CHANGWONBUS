@@ -89,7 +89,7 @@ GitHub Actions 을 통해 busdatasave.py 를 실행
 
 - **STEP 1** : `[1-1]busdata.json`과 `[1-3]stationdata.json` 데이터를 수집.
 - **STEP 2** : 입력된 버스 번호(`ROUTE_NM`)를 `[1-1]busdata.json`에서 버스 고유 ID(`ROUTE_ID`)로 매칭.
-- **STEP 3** : 버스 고유 ID(`ROUTE_ID`)를 사용해 `BusPosition` API로 현재 버스 위치를 조회.
+- **STEP 3** : 버스 고유 ID(`ROUTE_ID`)를 사용해 `[4-1]busposition.json` API로 현재 버스 위치를 조회.
 - **STEP 4** : `[3-1]busstop.json`을 사용해 현재 버스 위치의 다음 정류장을 조회.
 
 ### PLAN 2: 정류소 검색 -> 상/하행 정류소 목록 조회 -> 도착 정보 조회
