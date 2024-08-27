@@ -37,7 +37,7 @@ jobs:
       env:
         SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
       run: |
-        node script.js
+        node static/js/script.js
 
     - name: Commit and push changes
       run: |
