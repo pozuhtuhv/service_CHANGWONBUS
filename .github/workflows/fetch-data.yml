@@ -33,12 +33,9 @@ jobs:
       run: |
         python busdatasave.py
 
-    - name: Run script.js
-      env:
-        SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
-      run: |
-        node static/js/script.js
-
+    - name: Set up environment
+      run: echo "SERVICE_KEY=${{ secrets.SERVICE_KEY }}" >> $GITHUB_ENV
+  
     - name: Commit and push changes
       run: |
         git config --local user.email "pozuhtuhv@gmail.com"
