@@ -27,16 +27,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests xmltodict
 
-    # - name: Inject secrets into script.js
-    #   run: |
-    #     echo "const SERVICE_KEY = '${{ secrets.SERVICE_KEY }}';" > serviceKey.js
-    #     cat serviceKey.js script.js > temp.js && mv temp.js script.js
-
-    - name: Run script.js
-      env:
-        SERVICE_KEY: ${{ secrets.SERVICE_KEY }}  # secrets.SERVICE_KEY 전달
+    - name: Inject secrets into script.js
       run: |
-        node script.js
+        echo "const SERVICE_KEY = '${{ secrets.SERVICE_KEY }}';" > serviceKey.js
+        cat serviceKey.js script.js > temp.js && mv temp.js script.js
 
     - name: Run update script
       env:
