@@ -32,9 +32,6 @@ jobs:
         SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
       run: |
         python busdatasave.py
-
-    - name: Set up environment
-      run: echo "SERVICE_KEY=${{ secrets.SERVICE_KEY }}" >> $GITHUB_ENV
   
     - name: Commit and push changes
       run: |
