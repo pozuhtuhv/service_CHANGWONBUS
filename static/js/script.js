@@ -37,6 +37,11 @@ async function transformBusInfo(busInfo) {
     `;
 }
 
+// 버스 번호로 데이터를 필터링하는 함수
+function searchBus(busNum, busData) {
+    return busData.filter(row => row.ROUTE_NM.includes(busNum));
+}
+
 // LEFT Section
 // 검색 결과를 드롭다운으로 표시하는 함수 (왼쪽 섹션)
 function displayResultsLeft(results) {
