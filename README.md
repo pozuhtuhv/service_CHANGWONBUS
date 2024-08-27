@@ -18,7 +18,7 @@ GitHub Actions 을 통해 busdatasave.py 를 실행
 
 좌측 : <br>
 검색된 버스 데이터를 가져오고 , 정류장 정보 구분
-현재 운행중인 정보([4-1]busposition.json) 에서 하행종점, 상행종점 비교하여 반환
+현재 운행중인 정보(`[4-1]busposition.json`) 에서 하행종점, 상행종점 비교하여 반환
 
 ### 3. DATA
 
@@ -31,6 +31,7 @@ GitHub Actions 을 통해 busdatasave.py 를 실행
 - **[경상남도 창원시_기반정보조회서비스](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15000096)**
 
 - **버스노선목록 - [1-1]busdata.json**
+  - **매개변수**: `{SERVICE_KEY}`
   - **엔드포인트**: `http://openapi.changwon.go.kr/rest/bis/Bus/?serviceKey={SERVICE_KEY}`
   - **반환 정보 (필요한것만)**:
     - `ROUTE_ID`: 버스 고유 ID
@@ -41,6 +42,7 @@ GitHub Actions 을 통해 busdatasave.py 를 실행
     - `DST_STATION_ID`: 종점 정류장 ID
 
 - **정류소목록 - [1-3]stationdata.json**
+  - **매개변수**: `{SERVICE_KEY}`
   - **엔드포인트**: `http://openapi.changwon.go.kr/rest/bis/Station/?serviceKey={SERVICE_KEY}`
   - **반환 정보 (필요한것만)**:
     - `STATION_ID`: 정류소 고유 ID
@@ -51,6 +53,7 @@ GitHub Actions 을 통해 busdatasave.py 를 실행
 - **[경상남도 창원시_버스도착정보조회](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15000386)**
 
 - **정류소버스도착정보** - **[2-1]busarrives.json**
+  - **매개변수**: `{SERVICE_KEY}, {STATION_ID}`
   - **엔드포인트**: `http://openapi.changwon.go.kr/rest/bis/BusArrives/?serviceKey={SERVICE_KEY}&station={STATION_ID}`
   - **반환 정보 (필요한것만)**:
     - `ROUTE_ID`: 버스 고유 ID
@@ -63,6 +66,7 @@ GitHub Actions 을 통해 busdatasave.py 를 실행
 - **[경상남도 창원시_노선버스위치정류소](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15000254)**
 
 - **버스정류소목록 - [3-1]busstop.json**
+  - **매개변수**: `{SERVICE_KEY}, {ROUTE_ID}`
   - **엔드포인트**: `http://openapi.changwon.go.kr/rest/bis/BusLocation/?serviceKey={SERVICE_KEY}&route={ROUTE_ID}`
   - **반환 정보 (필요한것만)**:
     - `rowCount`: 결과 개수 | (총결과/2)+1 = 상행/하행 구분하기 
@@ -76,6 +80,7 @@ GitHub Actions 을 통해 busdatasave.py 를 실행
 - **[경상남도 창원시_노선별 버스위치목록](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15000416)**
 
 - **현재 운행 버스위치 - [4-1]busposition.json**
+  - **매개변수**: `{SERVICE_KEY}, {ROUTE_ID}`
   - **엔드포인트**: `http://openapi.changwon.go.kr/rest/bis/BusPosition/?serviceKey={SERVICE_KEY}&route={ROUTE_ID}`
   - **반환 정보 (필요한것만)**:
     - `rowCount`: 결과 개수
