@@ -45,12 +45,6 @@ jobs:
 
 # SERVICE_KEY TEST
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
-
-    - name: Create .env file
+    - name: Create script with environment variable
       run: |
-        echo "SERVICE_KEY=${{ secrets.SERVICE_KEY }}" >> .env
+        echo "<script>const SERVICE_KEY = '${{ secrets.SERVICE_KEY }}';</script>" >> ./public/service-key.js
