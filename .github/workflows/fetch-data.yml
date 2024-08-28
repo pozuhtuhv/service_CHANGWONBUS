@@ -41,7 +41,7 @@ jobs:
 
     - name: Run JavaScript script
       run: |
-        node script.js
+        node static/js/script.js
 
 # Git Push
     - name: Commit and push changes
