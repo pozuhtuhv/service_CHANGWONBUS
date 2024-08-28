@@ -16,7 +16,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
+      env: 
+        SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
+        
     - name: Set up Python
       uses: actions/setup-python@v2
       with:

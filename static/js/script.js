@@ -1,4 +1,5 @@
 const serviceKey = process.env.SERVICE_KEY;
+console.log(serviceKey)
 
 // 창원시 운용중인 전체 [버스] 데이터를 가져오는 함수
 async function fetchBusData() {
