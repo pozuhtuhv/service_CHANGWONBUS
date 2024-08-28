@@ -37,7 +37,7 @@ jobs:
     # Script.js에 SERVICE_KEY Push
     - name: Export SERVICE_KEY to script.js
       run: |
-        echo "const SERVICE_KEY = '${{ secrets.SERVICE_KEY }}';" > config.js
+        echo "const SERVICE_KEY = '${{ secrets.SERVICE_KEY }}';" > static/js/config.js
 
     - name: Run JavaScript script
       run: |
