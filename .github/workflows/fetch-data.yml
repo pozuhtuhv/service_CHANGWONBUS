@@ -34,11 +34,6 @@ jobs:
       run: |
         python busdatasave.py
 
-    # Script.js에 SERVICE_KEY Push
-    - name: Run JavaScript script
-      run: |
-        node static/js/script.js ${{ secrets.SERVICE_KEY }}
-
 # Git Push
     - name: Commit and push changes
       run: |
