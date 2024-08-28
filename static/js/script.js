@@ -1,4 +1,11 @@
-const { SERVICE_KEY } = require('./config.js');
+const SERVICE_KEY = process.argv[2];
+
+if (!SERVICE_KEY) {
+  console.error("SERVICE_KEY is not provided");
+  process.exit(1);
+}
+
+// SERVICE_KEY를 사용하는 로직
 console.log("Service Key:", SERVICE_KEY);
 
 // 창원시 운용중인 전체 [버스] 데이터를 가져오는 함수
