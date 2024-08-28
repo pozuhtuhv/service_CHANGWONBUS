@@ -16,14 +16,13 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      env: 
-        SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
-        
+      
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
 
+# Python
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -35,6 +34,7 @@ jobs:
       run: |
         python busdatasave.py
 
+# Git Push
     - name: Commit and push changes
       run: |
         git config --local user.email "pozuhtuhv@gmail.com"
@@ -42,3 +42,26 @@ jobs:
         git add -A
         git commit -m "(update) bus and station data"
         git push
+
+# SERVICE_KEY TEST
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+
+    - name: Create .env file
+      run: |
+        echo "SERVICE_KEY=${{ secrets.SERVICE_KEY }}" >> .env
