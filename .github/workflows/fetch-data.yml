@@ -47,4 +47,5 @@ jobs:
 
     - name: Create script with environment variable
       run: |
+        mkdir -p ./public
         echo "<script>const SERVICE_KEY = '${{ secrets.SERVICE_KEY }}';</script>" >> ./public/service-key.js
