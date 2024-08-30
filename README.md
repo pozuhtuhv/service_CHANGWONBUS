@@ -2,6 +2,11 @@
 
 **URL** : https://pozuhtuhv.github.io/service_CHANGWONBUS
 
+## 중단
+Javascript 로 공공데이터 API 진행할려 했으나 CORS policy 이슈로 인해 작동 안됨.
+서비스를 진행할려면 `개인서버를 통해 API 결과를 클라이언트에게 제공`해야함(EX: AWS...)
+현재 개인서버를 여는 재산이 없기에 중단
+
 ## 개요
 
 GitHub Actions 으로 자동 창원버스 API DATA 수집.
