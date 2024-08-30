@@ -152,11 +152,6 @@ function displayResultsRight(results) { // html 에서 이벤트 발생 했을�
     }
     dropdown.style.display = 'block'; // 드롭다운을 표시
 }
-async function fetchPosition(ROUTE_ID) {
-    const response = await fetch(`http://openapi.changwon.go.kr/rest/bis/BusPosition/?serviceKey=${SERVICE_KEY}&route=${ROUTE_ID}`);
-    const data = await response.json();
-    return data.ServiceResult.MsgBody.BusPositionList.row;
-}
 
 // 드롭다운에서 선택된 버스 정보를 표시하는 함수 (오른쪽 섹션)
 async function selectBusRight(event) { // html 에서 드롭다운 이벤트 발생 했을때
