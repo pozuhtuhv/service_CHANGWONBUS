@@ -3,27 +3,29 @@
 **URL** : https://pozuhtuhv.github.io/service_CHANGWONBUS
 
 ## 중단
-Javascript 로 공공데이터 API 진행할려 했으나 CORS policy 이슈로 인해 작동 안됨.
-서비스를 진행할려면 `개인서버를 통해 API 결과를 클라이언트에게 제공`해야함(EX: AWS...)
+Javascript 로 공공데이터 API 진행할려 했으나 CORS policy 이슈로 인해 작동 안됨.<br>
+서비스를 진행할려면 `개인서버를 통해 API 결과를 클라이언트에게 제공`해야함(EX: AWS...)<br>
 현재 개인서버를 여는 재산이 없기에 중단
 
 ## 개요
 
-GitHub Actions 으로 자동 창원버스 API DATA 수집.
+GitHub Actions 으로 자동 창원버스 API DATA 수집.<br>
 JavaScript와 HTML을 사용하여 위의 결과를 사용자 친화적인 방식으로 출력.
 
 ### 1. 세팅
 
 DATA 수집 설정 : <br>
-GitHub Repo Setting -> 공공 API 'SERVICE_KEY' : Secrets 키 설정
-GitHub Actions 을 통해 busdatasave.py 를 실행
+GitHub Repo Setting -> 공공 API 'SERVICE_KEY' : Secrets 키 설정<br>
+GitHub Actions 을 통해 busdatasave.py 를 실행<br>
 레포지토리 '창원버스 API' 데이터(json) 푸시
 
 ### 2. 계획
 
 좌측 : <br>
-검색된 버스 데이터를 가져오고 , 정류장 정보 구분
-현재 운행중인 정보(`[4-1]busposition.json`) 에서 하행종점, 상행종점 비교하여 반환
+검색된 버스 데이터를 가져옴
+<br>
+우측(Javascript 정책 이슈로 실패) : <br>
+검색된 버스의 현재 운행정보를 출력<br>
 
 ### 3. DATA
 
