@@ -1,4 +1,4 @@
-const SERVICE_KEY = '...'
+const SERVICE_KEY = 'qrweiqwerpiqwerpioreqwiperwpio'
 
 // 창원시 운용중인 전체 [버스] 데이터를 가져오는 함수 [1-1]
 async function fetchBusData() {
