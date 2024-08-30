@@ -5,6 +5,8 @@ def get_ip():
     result = subprocess.run(['curl', 'ipinfo.io/ip'], stdout=subprocess.PIPE)
     my_ip = result.stdout.decode('utf-8').strip()
     return my_ip
+a = get_ip()
+print(a)
 
 import os
 
