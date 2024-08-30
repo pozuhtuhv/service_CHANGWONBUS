@@ -27,7 +27,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install requests xmltodict
-        pip install fastapi uvicorn
+        pip install fastapi uvicorn httpx
 
     - name: Run update script
       env:
