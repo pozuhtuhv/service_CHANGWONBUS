@@ -1,4 +1,10 @@
+import os
 import subprocess
+
+import httpx
+import uvicorn
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
 
 
 def get_ip():
@@ -7,12 +13,6 @@ def get_ip():
     return my_ip
 a = get_ip()
 print(a)
-
-import os
-
-import httpx
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
@@ -34,5 +34,6 @@ async def fetch_location(route_id: str):
     return JSONResponse(content=response.json())
 
 if __name__ == "__main__":
-    import uvicorn
+    a = get_ip()
+    print(a)
     uvicorn.run(app, host="0.0.0.0", port=8000)
