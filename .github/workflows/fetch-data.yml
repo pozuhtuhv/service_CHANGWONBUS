@@ -1,13 +1,13 @@
 name: Update Bus Data
 
-# on:
-#   schedule:
-#     - cron: '0 0 * * *'  # 한국시간 오전 9시 실행
-
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '0 0 * * *'  # 한국시간 오전 9시 실행
+
+# on:
+#   push:
+#     branches:
+#       - main
 
 jobs:
   build:
@@ -43,9 +43,3 @@ jobs:
         git add -A
         git commit -m "(update) bus and station data"
         git push
-
-    - name: Run update script
-      env:
-        SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
-      run: |
-        python fastapi_test.py
