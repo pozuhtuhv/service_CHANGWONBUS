@@ -11,8 +11,6 @@ def get_ip():
     result = subprocess.run(['curl', 'ipinfo.io/ip'], stdout=subprocess.PIPE)
     my_ip = result.stdout.decode('utf-8').strip()
     return my_ip
-a = get_ip()
-print(a)
 
 app = FastAPI()
 
@@ -33,7 +31,6 @@ async def fetch_location(route_id: str):
     
     return JSONResponse(content=response.json())
 
-if __name__ == "__main__":
-    a = get_ip()
-    print(a)
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+a = get_ip()
+print(a)
+uvicorn.run(app, host="0.0.0.0", port=8000)
