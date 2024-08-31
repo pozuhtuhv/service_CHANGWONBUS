@@ -155,8 +155,12 @@ function displayResultsRight(results) { // html 에서 이벤트 발생 했을�
 
 // 드롭다운에서 선택된 버스 정보를 표시하는 함수 (오른쪽 섹션)
 async function selectBusRight(event) { // html 에서 드롭다운 이벤트 발생 했을때
-    const selectedBusInfo = JSON.parse(event.target.value); // 드롭다운에 선택된 번호
+    const selectedBusInfo = JSON.parse(event.target.value); // Json 버스 결과
     const routeId = selectedBusInfo.ROUTE_ID;
-    const position = await fetchPosition(routeId);
-    console.log(position);
+    const position = await fetchPosition(routeId); // row 가져온 상태
+    const stationData = await fetchStationData(); // 정류소 데이터 Json
+    const nowbusposition = getStationName(position.ARRV_STATION_ID, stationData);
+    const selectionDiv = document.getElementById('busSelection2');
+    selectionDiv.innerHTML = nowbusposition.trim(); // 줄바꿈이 포함된 HTML 삽입
+    selectionDiv.style.display = 'block';
 }
