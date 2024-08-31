@@ -315,7 +315,7 @@
                         "ROUTE_LEN": "54838",
                         "ROUTE_COLOR": "5",
                         "FIRST_TM": "06:00",
-                        "LAST_TM": "22:40",
+                        "LAST_TM": "23:00",
                         "GOV_NM": "창원시",
                         "UPD": "2024-05-18 14:45:57"
                     },
@@ -951,13 +951,13 @@
                         "DST_STATION_ID": "379002398",
                         "ROUTE_NUM": "277",
                         "ROUTE_TP": "80",
-                        "STATION_CNT": "60",
-                        "ROUTE_LEN": "25296.9",
+                        "STATION_CNT": "58",
+                        "ROUTE_LEN": "24138.9",
                         "ROUTE_COLOR": "3",
                         "FIRST_TM": "06:00",
                         "LAST_TM": "21:00",
                         "GOV_NM": "창원시",
-                        "UPD": "2024-08-23 15:23:22"
+                        "UPD": "2024-05-18 15:25:21"
                     },
                     {
                         "@index": "60",
@@ -1675,7 +1675,7 @@
                         "ROUTE_LEN": "104531.8",
                         "ROUTE_COLOR": "5",
                         "FIRST_TM": "05:25",
-                        "LAST_TM": "21:52",
+                        "LAST_TM": "21:44",
                         "GOV_NM": "창원시",
                         "UPD": "2024-05-18 15:25:46"
                     },
@@ -3419,7 +3419,7 @@
                         "ROUTE_LEN": "50647.8",
                         "ROUTE_COLOR": "3",
                         "FIRST_TM": "05:15",
-                        "LAST_TM": "21:05",
+                        "LAST_TM": "21:20",
                         "GOV_NM": "창원시",
                         "UPD": "2024-01-18 13:57:34"
                     },
@@ -3979,7 +3979,7 @@
                         "ROUTE_LEN": "55756.3",
                         "ROUTE_COLOR": "2",
                         "FIRST_TM": "05:00",
-                        "LAST_TM": "23:00",
+                        "LAST_TM": "null",
                         "GOV_NM": "창원시",
                         "UPD": "2024-05-21 09:10:28"
                     },
@@ -4219,7 +4219,7 @@
                         "ROUTE_LEN": "49957.2",
                         "ROUTE_COLOR": "3",
                         "FIRST_TM": "06:00",
-                        "LAST_TM": "22:05",
+                        "LAST_TM": "22:35",
                         "GOV_NM": "창원시",
                         "UPD": "2024-03-28 18:31:58"
                     },

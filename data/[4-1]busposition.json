@@ -1,0 +1,58 @@
+{
+    "ServiceResult": {
+        "ComMessageHeader": {
+            "RequestMsgID": null,
+            "ResponseTime": null,
+            "ResponseMsgID": null,
+            "SuccessYN": "Yes",
+            "ReturnCode": "00",
+            "ErrMsg": null
+        },
+        "MsgHeader": {
+            "rowCount": "6",
+            "bodyRoot": "BusPositionList"
+        },
+        "MsgBody": {
+            "BusPositionList": {
+                "row": [
+                    {
+                        "@index": "1",
+                        "ARRV_STATION_ID": "379002621",
+                        "LOW_PLATE_TP": "N",
+                        "PLATE_NO": "경남71자6073"
+                    },
+                    {
+                        "@index": "2",
+                        "ARRV_STATION_ID": "379001632",
+                        "LOW_PLATE_TP": "N",
+                        "PLATE_NO": "경남71자1153"
+                    },
+                    {
+                        "@index": "3",
+                        "ARRV_STATION_ID": "379006095",
+                        "LOW_PLATE_TP": "N",
+                        "PLATE_NO": "경남71자6072"
+                    },
+                    {
+                        "@index": "4",
+                        "ARRV_STATION_ID": "379001583",
+                        "LOW_PLATE_TP": "N",
+                        "PLATE_NO": "경남71자6071"
+                    },
+                    {
+                        "@index": "5",
+                        "ARRV_STATION_ID": "379002609",
+                        "LOW_PLATE_TP": "N",
+                        "PLATE_NO": "경남71자6070"
+                    },
+                    {
+                        "@index": "6",
+                        "ARRV_STATION_ID": "379005775",
+                        "LOW_PLATE_TP": "N",
+                        "PLATE_NO": "경남71자6074"
+                    }
+                ]
+            }
+        }
+    }
+}

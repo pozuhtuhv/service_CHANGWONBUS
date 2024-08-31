@@ -16,6 +16,7 @@ body {
     justify-content: space-around;
     width: 100%;
     max-width: 900px;
+    box-sizing: border-box;
 }
 
 /* 개별 컨테이너 설정 */
@@ -29,6 +30,7 @@ body {
     box-sizing: border-box;
 }
 
+/* 제목 스타일 */
 h1 {
     font-size: 20px;
     margin-bottom: 15px;
@@ -37,6 +39,7 @@ h1 {
     font-weight: normal;
 }
 
+/* 레이블 스타일 */
 label {
     display: block;
     text-align: left;
@@ -45,6 +48,7 @@ label {
     color: #666;
 }
 
+/* 입력 필드 스타일 */
 input[type="text"] {
     width: 90%;
     padding: 10px;
@@ -56,6 +60,7 @@ input[type="text"] {
     background-color: #fafafa;
 }
 
+/* 버튼 스타일 */
 button {
     background-color: #333;
     color: white;
@@ -71,6 +76,7 @@ button:hover {
     background-color: #555;
 }
 
+/* 드롭다운 스타일 */
 select {
     width: 100%;
     padding: 10px;
@@ -84,7 +90,8 @@ select {
     display: none;
 }
 
-#busSelection1, #busSelection2 {
+/* 정보 박스 스타일 */
+.bus-info-box {
     margin-top: 15px;
     padding: 10px;
     background-color: #ebebeb;
@@ -92,13 +99,23 @@ select {
     border: 1px solid #ccc;
     display: none;
     color: #333;
+    max-height: 400px; /* 박스의 최대 높이 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
 }
 
-pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    font-size: 14px;
-    color: #555;
+.bus-info-box h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.bus-info-box p {
+    margin: 5px 0;
+}
+
+.bus-info-box hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 10px 0;
 }
 
 /* 반응형 디자인 */

@@ -1,0 +1,42 @@
+{
+    "ServiceResult": {
+        "ComMessageHeader": {
+            "RequestMsgID": null,
+            "ResponseTime": null,
+            "ResponseMsgID": null,
+            "SuccessYN": "Yes",
+            "ReturnCode": "00",
+            "ErrMsg": null
+        },
+        "MsgHeader": {
+            "rowCount": "2",
+            "bodyRoot": "ArriveInfoList"
+        },
+        "MsgBody": {
+            "ArriveInfoList": {
+                "row": [
+                    {
+                        "@index": "1",
+                        "ROUTE_ID": "379030060",
+                        "STATION_ORD": "1",
+                        "CALC_DATE": "null",
+                        "PREDICT_TRAV_TM": "0",
+                        "LEFT_STATION": "0",
+                        "ARRV_VH_ID": "0",
+                        "UPDN_DIR": "0"
+                    },
+                    {
+                        "@index": "2",
+                        "ROUTE_ID": "379030020",
+                        "STATION_ORD": "1",
+                        "CALC_DATE": "null",
+                        "PREDICT_TRAV_TM": "0",
+                        "LEFT_STATION": "0",
+                        "ARRV_VH_ID": "0",
+                        "UPDN_DIR": "0"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -20,15 +20,19 @@ async function fetchStationData() {
 }
 
 // 창원시 해당버스 [전체 정류소 및 진입, 진출]를 가져오는 함수 [3-1]
-async function fetchLocation(ROUTE_ID) {
-    const response = await fetch(`http://openapi.changwon.go.kr/rest/bis/BusLocation/?serviceKey=${SERVICE_KEY}&route=${ROUTE_ID}`);
+// async function fetchBusStop(ROUTE_ID) {
+async function fetchBusStop() {
+    const response = await fetch('https://raw.githubusercontent.com/pozuhtuhv/api_CHANGWONBUS/main/data/%5B3-1%5Dbusstop.json');
+    // const response = await fetch(`http://openapi.changwon.go.kr/rest/bis/BusLocation/?serviceKey=${SERVICE_KEY}&route=${ROUTE_ID}`);
     const data = await response.json();
     return data.ServiceResult.MsgBody.BusLocationList.row;
 }
 
 // 창원시 해당버스 [현재 위치 정류소] 데이터를 가져오는 함수 [4-1] 
-async function fetchPosition(ROUTE_ID) {
-    const response = await fetch(`http://openapi.changwon.go.kr/rest/bis/BusPosition/?serviceKey=${SERVICE_KEY}&route=${ROUTE_ID}`);
+// async function fetchPosition(ROUTE_ID) {
+async function fetchPosition() {
+    const response = await fetch('https://raw.githubusercontent.com/pozuhtuhv/api_CHANGWONBUS/main/data/%5B4-1%5Dbusposition.json');
+    // const response = await fetch(`http://openapi.changwon.go.kr/rest/bis/BusPosition/?serviceKey=${SERVICE_KEY}&route=${ROUTE_ID}`);
     const data = await response.json();
     return data.ServiceResult.MsgBody.BusPositionList.row;
 }
@@ -153,14 +157,42 @@ function displayResultsRight(results) { // html 에서 이벤트 발생 했을�
     dropdown.style.display = 'block'; // 드롭다운을 표시
 }
 
-// 드롭다운에서 선택된 버스 정보를 표시하는 함수 (오른쪽 섹션)
-async function selectBusRight(event) { // html 에서 드롭다운 이벤트 발생 했을때
-    const selectedBusInfo = JSON.parse(event.target.value); // Json 버스 결과
-    const routeId = selectedBusInfo.ROUTE_ID;
-    const position = await fetchPosition(routeId); // row 가져온 상태
-    const stationData = await fetchStationData(); // 정류소 데이터 Json
-    const nowbusposition = getStationName(position.ARRV_STATION_ID, stationData);
+// 드롭다운에서 선택된 버스 정보를 콘솔에 표시하는 함수 (오른쪽 섹션)
+// 드롭다운에서 선택된 버스 정보를 HTML로 표시하는 함수 (오른쪽 섹션)
+async function selectBusRight(event) {
+    const selectedBusInfo = JSON.parse(event.target.value); // 선택된 버스 정보
+
+    // 버스 위치 정보와 정류소 데이터를 가져오기
+    const positionData = await fetchPosition();
+    const stationData = await fetchStationData(); // 정류소 데이터
+
+    // ARRV_STATION_ID를 통해 현재 정류장의 위치를 매칭
+    let positionInfoHTML = `<h2>선택된 버스 정보 (${selectedBusInfo.ROUTE_NM})</h2>`;
+    
+    let foundBus = false;
+    positionData.forEach(position => {
+        // 버스의 도착 정류장 이름 찾기
+        const currentStationName = getStationName(position.ARRV_STATION_ID, stationData);
+
+        // 버스 정보를 HTML로 생성
+        positionInfoHTML += `
+            <div>
+                <p>버스 번호판: ${position.PLATE_NO}</p>
+                <p>도착 정류장 ID: ${position.ARRV_STATION_ID}</p>
+                <p>도착 정류장 이름: ${currentStationName}</p>
+                <p>저상버스 여부: ${position.LOW_PLATE_TP === 'Y' ? '예' : '아니오'}</p>
+                <hr>
+            </div>
+        `;
+        foundBus = true;
+    });
+
+    if (!foundBus) {
+        positionInfoHTML = "<p>운행 중인 버스가 없습니다.</p>";
+    }
+
+    // 결과를 화면에 표시
     const selectionDiv = document.getElementById('busSelection2');
-    selectionDiv.innerHTML = nowbusposition.trim(); // 줄바꿈이 포함된 HTML 삽입
-    selectionDiv.style.display = 'block';
+    selectionDiv.innerHTML = positionInfoHTML;
+    selectionDiv.style.display = 'block'; // 결과 영역을 표시
 }
