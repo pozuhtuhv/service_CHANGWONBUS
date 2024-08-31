@@ -21,7 +21,7 @@ async function fetchStationData() {
 
 // 창원시 해당버스 [전체 정류소 및 진입, 진출]를 가져오는 함수 [3-1]
 // async function fetchBusStop(ROUTE_ID) {
-async function fetchBusStop() {
+async function fetchBusStop() { // 크로스 도메인 문제 없을시 수정해야함
     const response = await fetch('https://raw.githubusercontent.com/pozuhtuhv/api_CHANGWONBUS/main/data/%5B3-1%5Dbusstop.json');
     // const response = await fetch(`http://openapi.changwon.go.kr/rest/bis/BusLocation/?serviceKey=${SERVICE_KEY}&route=${ROUTE_ID}`);
     const data = await response.json();
@@ -30,7 +30,7 @@ async function fetchBusStop() {
 
 // 창원시 해당버스 [현재 위치 정류소] 데이터를 가져오는 함수 [4-1] 
 // async function fetchPosition(ROUTE_ID) {
-async function fetchPosition() {
+async function fetchPosition() { // 크로스 도메인 문제 없을시 수정해야함
     const response = await fetch('https://raw.githubusercontent.com/pozuhtuhv/api_CHANGWONBUS/main/data/%5B4-1%5Dbusposition.json');
     // const response = await fetch(`http://openapi.changwon.go.kr/rest/bis/BusPosition/?serviceKey=${SERVICE_KEY}&route=${ROUTE_ID}`);
     const data = await response.json();
@@ -157,13 +157,13 @@ function displayResultsRight(results) { // html 에서 이벤트 발생 했을�
     dropdown.style.display = 'block'; // 드롭다운을 표시
 }
 
-// 드롭다운에서 선택된 버스 정보를 콘솔에 표시하는 함수 (오른쪽 섹션)
 // 드롭다운에서 선택된 버스 정보를 HTML로 표시하는 함수 (오른쪽 섹션)
 async function selectBusRight(event) {
     const selectedBusInfo = JSON.parse(event.target.value); // 선택된 버스 정보
 
     // 버스 위치 정보와 정류소 데이터를 가져오기
-    const positionData = await fetchPosition();
+    // const routeId = selectedBusInfo.ROUTE_ID; // 크로스 도메인 작동시 수정해야함
+    const positionData = await fetchPosition(); // 크로스 도메인 작동시 수정해야함 await fetchPosition(routeId);
     const stationData = await fetchStationData(); // 정류소 데이터
 
     // ARRV_STATION_ID를 통해 현재 정류장의 위치를 매칭
@@ -177,10 +177,10 @@ async function selectBusRight(event) {
         // 버스 정보를 HTML로 생성
         positionInfoHTML += `
             <div>
-                <p>버스 번호판: ${position.PLATE_NO}</p>
-                <p>도착 정류장 ID: ${position.ARRV_STATION_ID}</p>
-                <p>도착 정류장 이름: ${currentStationName}</p>
-                <p>저상버스 여부: ${position.LOW_PLATE_TP === 'Y' ? '예' : '아니오'}</p>
+                <p><strong>버스 번호판:</strong> ${position.PLATE_NO}</p>
+                <p><strong>도착 정류장 ID:</strong> ${position.ARRV_STATION_ID}</p>
+                <p><strong>도착 정류장 이름:</strong> ${currentStationName}</p>
+                <p><strong>저상버스 여부:</strong> ${position.LOW_PLATE_TP === 'Y' ? '예' : '아니오'}</p>
                 <hr>
             </div>
         `;
